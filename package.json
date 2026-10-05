@@ -1,0 +1,10 @@
+{
+  "name": "chazeau-ardeche",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Chazeau estate in Ardèche, France. A multilingual single-page property presentation.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "python -m http.server 3000 --directory dist"
+  }
+}

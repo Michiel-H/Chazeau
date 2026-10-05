@@ -1,0 +1,9 @@
+dist/
+.vercel/
+node_modules/
+qa/
+*.log
+.env*
+chazeau-preview.html
+.DS_Store
+chazeau-desktop.png
