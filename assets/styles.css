@@ -12,3 +12,4 @@
 @media(max-width:650px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.fact{padding-inline:16px}}
 @media(max-width:380px){.wordmark-main{font-size:22px}.wordmark-place{font-size:8.5px}.language-link{width:32px}.fact-pool{font-size:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+.fact-text{display:block;font-family:var(--serif);font-size:22px;line-height:1.35;font-weight:400}@media(max-width:1000px){.fact-text{font-size:19px}}@media(max-width:650px){.fact-text{font-size:18px}}@media(max-width:380px){.fact-text{font-size:16px}}

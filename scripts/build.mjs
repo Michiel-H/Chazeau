@@ -54,8 +54,8 @@ ${rootPage?autoLanguage:''}
    <p class="sr-only" id="gallery-announcement" aria-live="polite" aria-atomic="true">${esc(t.photo)} 1 ${esc(t.of)} 10</p>
    <div class="gallery-thumbnails" role="group" aria-label="${esc(t.thumbnails)}">${photos.map((p,i)=>`<button class="thumbnail" type="button" aria-label="${esc(t.photo)} ${i+1}: ${esc(t.alt[i])}" aria-pressed="${i===0}"><img src="/assets/thumbs/${p.file}.webp" alt="" width="240" height="170" loading="lazy" decoding="async"></button>`).join('')}</div>
   </section>
-  <div class="introduction"><p class="eyebrow">${esc(t.eyebrow)}</p><h1>${esc(t.title)}</h1><p class="intro-subtitle">${esc(t.subtitle)}</p></div>
-  <div class="facts">${t.facts.map((f,i)=>`<div class="fact"><span class="fact-value${i===3?' fact-pool':''}">${esc(f[0])}</span><span class="fact-label">${esc(f[1])}</span></div>`).join('')}</div>
+  <div class="introduction"><p class="eyebrow">${esc(t.eyebrow)}</p><h1>${esc(t.title)}</h1>${t.subtitle?`<p class="intro-subtitle">${esc(t.subtitle)}</p>`:''}</div>
+  <div class="facts">${t.facts.map((f,i)=>typeof f==='string'?`<div class="fact"><span class="fact-text">${esc(f)}</span></div>`:`<div class="fact"><span class="fact-value${i===3?' fact-pool':''}">${esc(f[0])}</span><span class="fact-label">${esc(f[1])}</span></div>`).join('')}</div>
   ${sections}
   <div class="closing"><p>${esc(t.closing)}</p></div>
  </div>
