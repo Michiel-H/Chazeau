@@ -149,7 +149,7 @@ export const content = {
         'Etwa zwanzig bis dreißig Autominuten entfernt liegt Saint-Bonnet-le-Froid, ein Spitzenziel für Feinschmecker mit mehreren Restaurants, darunter das mit drei Michelin-Sternen ausgezeichnete Restaurant Marcon, das die besten Aromen lokaler Zutaten zur Geltung bringt.'
       ]}
     ],
-    closing:'Dieses Anwesen vereint historisches Erbe, den Komfort eines renovierten Hauses und ein weitläufiges Privatgelände. Eine Oase im Zentralmassiv; ein Zuhause, in das man zu jeder Jahreszeit zurückkehrt und das man mit kommenden Generationen teilt.',
+    closing:'Dieses Anwesen bietet eine einzigartige Kombination aus historischem Erbe, dem Komfort eines renovierten Hauses und einem weitläufigen Privatgelände. Eine Oase im Zentralmassiv; ein Zuhause, in das man zu jeder Jahreszeit zurückkehrt und das man mit kommenden Generationen teilt.',
     contactHeading:'Informationen und Besichtigungen',
     contactDescription:'Der Verkauf des Anwesens wird von L’Immobilière du Lac in Devesset betreut. Für weitere Informationen, den aktuellen Angebotspreis, die Verkaufsunterlagen oder die Vereinbarung einer persönlichen Besichtigung wenden Sie sich bitte direkt an die Immobilienagentur unter den folgenden Kontaktdaten.',
     listing:'Offizielles Immobilienangebot ansehen',
