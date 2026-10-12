@@ -34,7 +34,7 @@ export const content = {
     sections:[
       {heading:'Doordrenkt van geschiedenis.',paragraphs:[
         'Het zachte geluid van de rivier de Aygueneyre in het dal, de wind in de bomen en een idyllisch landschap zover het oog reikt. In Rochepaule, in het noorden van het rustige departement Ardèche, biedt deze woning een omgeving waar rust en privacy gegarandeerd zijn.',
-        'Het maison forte uit de 16e eeuw met een naastgelegen voormalige boerderij uit 1784, vormen samen een bijzonder geheel. Beide zijn gerenoveerd met respect voor hun historische karakter. De eeuwenoude, dikke muren geven het huis een karakteristieke sfeer en moderne gemakken, zoals vloerverwarming in de keuken, maken het in elk seizoen bewoonbaar. Er is ruim voldoende plek voor het dagelijks leven, langere verblijven en tijd met familie en vrienden.'
+        'Het maison forte uit de 16e eeuw en de naastgelegen voormalige boerderij uit 1784 vormen samen een bijzonder geheel. Beide zijn gerenoveerd met respect voor hun historische karakter. De eeuwenoude, dikke muren geven het huis een karakteristieke sfeer en moderne gemakken, zoals vloerverwarming in de keuken, maken het in elk seizoen bewoonbaar. Er is ruim voldoende plek voor het dagelijks leven, langere verblijven en tijd met familie en vrienden.'
       ]},
       {heading:'Een plek om tot rust te komen.',paragraphs:[
         'Buiten ligt het verwarmde zwembad met mooi uitzicht op het dal. Het grotendeels beboste terrein, ruim 51 hectare groot, biedt uitzonderlijke privacy en jachtrecht op eigen grond. Het bronwater van eigen bron en de rivier de Aygueneyre in het dal versterken de verbinding met de natuur.',
