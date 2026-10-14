@@ -45,7 +45,7 @@ ${rootPage?autoLanguage:''}
  <div class="wrap">
   <section class="gallery" aria-label="${esc(t.gallery)}">
    <div class="gallery-stage" tabindex="0" aria-label="${esc(t.gallery)}">
-    <img class="gallery-photo" src="/assets/photos/${photos[0].file}.webp" alt="${esc(t.alt[0])}" width="1536" height="1152" fetchpriority="high" decoding="async">
+    <img class="gallery-photo${photos[0].portrait?' portrait':''}" src="/assets/photos/${photos[0].file}.webp" alt="${esc(t.alt[0])}" width="1536" height="1152" fetchpriority="high" decoding="async">
     <button class="gallery-control gallery-prev" type="button" aria-label="${esc(t.previous)}">${arrow('left')}</button>
     <button class="gallery-control gallery-next" type="button" aria-label="${esc(t.next)}">${arrow('right')}</button>
     <p class="gallery-error" role="status" hidden>${esc(t.imageError)}</p>
@@ -80,4 +80,4 @@ for(const lang of Object.keys(languages)){
 await writeFile(join(output,'index.html'),render('fr',true));
 await writeFile(join(output,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
 await writeFile(join(output,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${Object.keys(languages).map(l=>`<url><loc>${origin}/${l}/</loc>${Object.keys(languages).map(k=>`<xhtml:link rel="alternate" hreflang="${languages[k].locale}" href="${origin}/${k}/"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${origin}/"/></url>`).join('')}</urlset>`);
-console.log('Built Chazeau: four complete language versions, 10 photographs, sitemap and metadata.');
+console.log(`Built Chazeau: four complete language versions, ${photos.length} photographs, sitemap and metadata.`);
