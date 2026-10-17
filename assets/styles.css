@@ -14,3 +14,4 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 .fact-text{display:block;font-family:var(--serif);font-size:22px;line-height:1.35;font-weight:400}@media(max-width:1000px){.fact-text{font-size:19px}}@media(max-width:650px){.fact-text{font-size:18px}}@media(max-width:380px){.fact-text{font-size:16px}}
 @media(min-width:651px){.facts{grid-template-columns:minmax(0,1.7fr) repeat(3,minmax(0,1fr))}}
+.fact{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
