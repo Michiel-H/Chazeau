@@ -22,7 +22,7 @@ Alle teksten en de volgorde van de foto's staan in `content.mjs`. De huidige fot
 3. Voeg per taal een passende fotobeschrijving toe in de `alt`-lijst.
 4. Voer `npm run build` uit. Bij een gekoppeld Vercel-project publiceert een commit naar de productiebranch de wijziging.
 
-De grote beelden zijn geoptimaliseerd en bevatten geen EXIF-locatiegegevens. De galerij ondersteunt miniaturen, pijlen, toetsenbord en veegbewegingen. Er worden geen externe lettertypen, trackingdiensten of cookies gebruikt.
+De grote beelden zijn geoptimaliseerd en bevatten geen EXIF-locatiegegevens. De galerij ondersteunt miniaturen, pijlen, toetsenbord en veegbewegingen. Er worden geen externe lettertypen of cookies gebruikt. Bezoekersstatistieken lopen via Vercel Web Analytics (cookieloos), zichtbaar onder Analytics in het Vercel-project.
 
 ## Publicatie
 

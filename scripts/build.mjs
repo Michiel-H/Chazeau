@@ -34,6 +34,7 @@ ${Object.keys(languages).map(l=>`<link rel="alternate" hreflang="${languages[l].
 <meta property="og:title" content="${esc(t.pageTitle)}"><meta property="og:description" content="${esc(t.description)}"><meta property="og:url" content="${origin}/${lang}/"><meta property="og:locale" content="${languages[lang].locale.replace('-','_')}">
 ${rootPage?autoLanguage:''}
 <script src="/assets/gallery.js" defer></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script><script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body id="top">
 <a class="skip-link" href="#main">${esc(t.skip)}</a>
