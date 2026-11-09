@@ -14,6 +14,16 @@ const flags={
 };
 const arrow=direction=>`<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="${direction==='left'?'M14 5l-7 7 7 7':'M10 5l7 7-7 7'}" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const autoLanguage=`<script>(()=>{if(location.pathname!=='/')return;let l;try{l=localStorage.getItem('chazeau-language')}catch(e){}if(!['de','nl','fr','en'].includes(l)){const preferred=navigator.languages||[navigator.language||'fr'];l=preferred.map(v=>v.slice(0,2).toLowerCase()).find(v=>['de','nl','fr','en'].includes(v))||'fr'}location.replace('/'+l+'/'+location.search+location.hash)})()</script>`;
+const analytics='<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script><script defer src="/_vercel/insights/script.js"></script>';
+// Clicks on the agent's listing go through /<lang>/makelaar/ so Web Analytics (Hobby plan, no custom events) counts them as page views.
+function agentRedirect(lang){
+ const target=JSON.stringify(listing);
+ return `<!doctype html><html lang="${languages[lang].locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>L’Immobilière du Lac</title><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+${analytics}
+<script>(()=>{let done=false;const go=()=>{if(!done){done=true;location.replace(${target})}};addEventListener('load',()=>setTimeout(go,400));setTimeout(go,2500)})()</script>
+<noscript><meta http-equiv="refresh" content="0;url=${esc(listing)}"></noscript>
+</head><body style="font-family:Georgia,serif;background:#f5f2ea;color:#193e35;display:grid;place-items:center;min-height:100vh;margin:0"><p><a href="${esc(listing)}" style="color:inherit">${esc(content[lang].listing)} →</a></p></body></html>`;
+}
 function render(lang,rootPage=false){
  const t=content[lang];
  const galleryData=JSON.stringify({photos,alt:t.alt,photo:t.photo,of:t.of}).replace(/</g,'\\u003c');
@@ -26,7 +36,7 @@ function render(lang,rootPage=false){
 <meta name="description" content="${esc(t.description)}">
 <link rel="canonical" href="${origin}/${lang}/">
 ${Object.keys(languages).map(l=>`<link rel="alternate" hreflang="${languages[l].locale}" href="${origin}/${l}/">`).join('\n')}
-<link rel="alternate" hreflang="x-default" href="${origin}/">
+<link rel="alternate" hreflang="x-default" href="${origin}/fr/">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="preload" as="image" href="/assets/photos/${photos[0].file}.webp" fetchpriority="high">
 <link rel="stylesheet" href="/assets/styles.css">
@@ -34,7 +44,7 @@ ${Object.keys(languages).map(l=>`<link rel="alternate" hreflang="${languages[l].
 <meta property="og:title" content="${esc(t.pageTitle)}"><meta property="og:description" content="${esc(t.description)}"><meta property="og:url" content="${origin}/${lang}/"><meta property="og:locale" content="${languages[lang].locale.replace('-','_')}">
 ${rootPage?autoLanguage:''}
 <script src="/assets/gallery.js" defer></script>
-<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script><script defer src="/_vercel/insights/script.js"></script>
+${analytics}
 </head>
 <body id="top">
 <a class="skip-link" href="#main">${esc(t.skip)}</a>
@@ -60,7 +70,7 @@ ${rootPage?autoLanguage:''}
   ${sections}
   <div class="closing"><p>${esc(t.closing)}</p></div>
  </div>
- <section class="contact-section" aria-labelledby="contact-heading"><div class="contact-inner wrap"><div><p class="section-number">04</p><h2 id="contact-heading" class="section-heading">${esc(t.contactHeading)}</h2></div><div><p class="contact-description">${esc(t.contactDescription)}</p><div class="contact-actions"><a class="primary-link" href="${listing}" target="_blank" rel="noopener noreferrer">${esc(t.listing)}</a></div><address class="contact-address"><div><strong>L’Immobilière du Lac</strong><br>300, Grand Rue<br>07320 Devesset, ${esc(t.country)}</div><div><span class="sr-only">${esc(t.phone)}: </span><a href="tel:+33611652615">+33 6 11 65 26 15</a><br><span class="sr-only">${esc(t.email)}: </span><a href="mailto:contact@limmobiliere-du-lac.com">contact@limmobiliere-du-lac.com</a></div></address></div></div></section>
+ <section class="contact-section" aria-labelledby="contact-heading"><div class="contact-inner wrap"><div><p class="section-number">04</p><h2 id="contact-heading" class="section-heading">${esc(t.contactHeading)}</h2></div><div><p class="contact-description">${esc(t.contactDescription)}</p><div class="contact-actions"><a class="primary-link" href="/${lang}/makelaar/" target="_blank" rel="noopener">${esc(t.listing)}</a></div><address class="contact-address"><div><strong>L’Immobilière du Lac</strong><br>300, Grand Rue<br>07320 Devesset, ${esc(t.country)}</div><div><span class="sr-only">${esc(t.phone)}: </span><a href="tel:+33611652615">+33 6 11 65 26 15</a><br><span class="sr-only">${esc(t.email)}: </span><a href="mailto:contact@limmobiliere-du-lac.com">contact@limmobiliere-du-lac.com</a></div></address></div></div></section>
 </main>
 <footer class="site-footer wrap"><span class="footer-name">Chazeau</span><div class="footer-notes"><p>${esc(t.risksBefore)} <a href="https://www.georisques.gouv.fr" target="_blank" rel="noopener noreferrer">Géorisques</a>.</p><p>${esc(t.fees)}</p></div></footer>
 <script type="application/json" id="gallery-data">${galleryData}</script>
@@ -77,8 +87,10 @@ await cp(join(root,'assets'),join(output,'assets'),{recursive:true});
 for(const lang of Object.keys(languages)){
  await mkdir(join(output,lang),{recursive:true});
  await writeFile(join(output,lang,'index.html'),render(lang));
+ await mkdir(join(output,lang,'makelaar'),{recursive:true});
+ await writeFile(join(output,lang,'makelaar','index.html'),agentRedirect(lang));
 }
 await writeFile(join(output,'index.html'),render('fr',true));
 await writeFile(join(output,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
-await writeFile(join(output,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${Object.keys(languages).map(l=>`<url><loc>${origin}/${l}/</loc>${Object.keys(languages).map(k=>`<xhtml:link rel="alternate" hreflang="${languages[k].locale}" href="${origin}/${k}/"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${origin}/"/></url>`).join('')}</urlset>`);
+await writeFile(join(output,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${Object.keys(languages).map(l=>`<url><loc>${origin}/${l}/</loc>${Object.keys(languages).map(k=>`<xhtml:link rel="alternate" hreflang="${languages[k].locale}" href="${origin}/${k}/"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${origin}/fr/"/></url>`).join('')}</urlset>`);
 console.log(`Built Chazeau: four complete language versions, ${photos.length} photographs, sitemap and metadata.`);
